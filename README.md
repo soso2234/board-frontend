@@ -1,38 +1,84 @@
-# board-frontend
+# 📋 Board Frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+Spring Boot REST API 기반 게시판 프로젝트의 프론트엔드입니다.
 
-## Recommended IDE Setup
+## 🛠 Tech Stack
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Vue.js 3
+- Vue Router
+- Pinia (상태 관리)
+- Axios
+- WebSocket (STOMP + SockJS)
+- Vite
 
-## Recommended Browser Setup
+## 📌 주요 기능
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- 회원가입 / 로그인 (JWT 인증)
+- 게시글 CRUD (작성 / 조회 / 수정 / 삭제)
+- 본인 게시글만 수정 / 삭제 가능
+- 게시글 페이징 (10개씩, 최신순)
+- 게시글 조회수 / 댓글 수 표시
+- 댓글 / 대댓글 CRUD (무제한 깊이)
+- 본인 댓글만 수정 / 삭제 가능
+- 실시간 전체 채팅 팝업 (WebSocket)
+- 네비게이션 바 및 로그아웃
 
-## Customize configuration
+## 🗂 프로젝트 구조
+src/
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+├── api/            # axios API 호출
 
-## Project Setup
+│   ├── axios.js    # axios 인스턴스 및 인터셉터
 
-```sh
+│   ├── auth.js     # 회원가입 / 로그인 API
+
+│   └── post.js     # 게시글 / 댓글 API
+
+├── stores/         # Pinia 상태 관리
+
+│   └── auth.js     # 로그인 상태 / 토큰 관리
+
+├── views/          # 페이지 컴포넌트
+
+│   ├── LoginView.vue
+
+│   ├── SignupView.vue
+
+│   ├── PostListView.vue
+
+│   ├── PostDetailView.vue
+
+│   └── PostFormView.vue
+
+├── components/     # 공통 컴포넌트
+
+│   ├── NavBar.vue
+
+│   ├── CommentItem.vue
+
+│   └── ChatPopup.vue
+
+└── router/         # 라우팅 설정
+
+└── index.js
+
+## 🔗 연관 프로젝트
+
+- 백엔드: [board-api](https://github.com/soso2234/board-api)
+
+## ⚙️ 실행 방법
+
+### 사전 준비
+백엔드 서버가 `http://localhost:8080`에서 실행 중이어야 합니다.
+
+### 설치 및 실행
+
+```bash
+# 의존성 설치
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+# 개발 서버 실행
 npm run dev
 ```
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+개발 서버: `http://localhost:5173`
