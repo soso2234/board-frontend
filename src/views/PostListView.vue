@@ -11,6 +11,7 @@
           <th>제목</th>
           <th>작성자</th>
           <th>작성일</th>
+          <th>조회수</th>
         </tr>
       </thead>
       <tbody>
@@ -21,9 +22,15 @@
           class="post-row"
         >
           <td>{{ post.id }}</td>
-          <td>{{ post.title }}</td>
+          <td>
+            {{ post.title }}
+            <span v-if="post.commentCount > 0" class="comment-count">
+              ({{ post.commentCount }})
+            </span>
+          </td>
           <td>{{ post.author }}</td>
           <td>{{ formatDate(post.createdAt) }}</td>
+          <td>{{ post.viewCount }}</td>
         </tr>
       </tbody>
     </table>

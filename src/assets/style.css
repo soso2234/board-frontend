@@ -548,3 +548,11 @@ th {
     cursor: not-allowed;
     border-color: #eee;
 }
+
+/* 댓글 수 */
+.comment-count {
+    color: #4CAF50;
+    font-size: 13px;
+    margin-left: 4px;
+    font-weight: bold;
+}
