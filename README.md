@@ -1,5 +1,6 @@
 # 📋 Board Frontend
 
+Claude AI 활용
 Spring Boot REST API 기반 게시판 프로젝트의 프론트엔드입니다.
 
 ## 🛠 Tech Stack
