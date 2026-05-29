@@ -1,8 +1,8 @@
 import axios from './axios.js'
 
-// 전체 조회
-export const getPosts = () => {
-    return axios.get('/api/posts')
+// 전체 조회 (페이징)
+export const getPosts = (page = 0) => {
+    return axios.get(`/api/posts?page=${page}`)
 }
 
 // 단건 조회

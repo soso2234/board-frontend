@@ -28,6 +28,26 @@
       </tbody>
     </table>
     <p v-if="posts.length === 0" class="empty">게시글이 없습니다.</p>
+
+    <!-- 페이징 -->
+    <div class="pagination">
+      <button
+        :disabled="currentPage === 0"
+        @click="loadPosts(currentPage - 1)"
+      >이전</button>
+
+      <button
+        v-for="page in totalPages"
+        :key="page"
+        :class="{ active: currentPage === page - 1 }"
+        @click="loadPosts(page - 1)"
+      >{{ page }}</button>
+
+      <button
+        :disabled="currentPage === totalPages - 1"
+        @click="loadPosts(currentPage + 1)"
+      >다음</button>
+    </div>
   </div>
 </template>
 
@@ -38,13 +58,21 @@ import { getPosts } from '@/api/post.js'
 
 const router = useRouter()
 const posts = ref([])
+const currentPage = ref(0)
+const totalPages = ref(0)
 
 const formatDate = (dateStr) => {
   return new Date(dateStr).toLocaleDateString('ko-KR')
 }
 
-onMounted(async () => {
-  const response = await getPosts()
-  posts.value = response.data
+const loadPosts = async (page = 0) => {
+  const response = await getPosts(page)
+  posts.value = response.data.content
+  currentPage.value = response.data.number
+  totalPages.value = response.data.totalPages
+}
+
+onMounted(() => {
+  loadPosts()
 })
 </script>
